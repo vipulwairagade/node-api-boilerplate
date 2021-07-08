@@ -8,25 +8,23 @@ const level = envConfig.ENV === ENVIRONMENTS.DEVELOPMENT ? LOG_LEVELS.DEBUG : LO
 export const serverLogger = pino(
   {
     name: "server",
-    level,
+    level: level || LOG_LEVELS.DEBUG,
     formatters: {
       level(label) {
         return { level: label };
       }
     }
-  },
-  pino.destination(`./logs/server-${envConfig.ENV}`)
+  }
 );
 
 export const expressLogger = pinoExpress(
   {
     name: "express",
-    level,
+    level: level || LOG_LEVELS.INFO,
     formatters: {
       level(label) {
         return { level: label };
       }
     }
-  },
-  pino.destination(`./logs/express-${envConfig.ENV}`)
+  }
 );

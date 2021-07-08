@@ -1,5 +1,7 @@
 # Logs
-logs/*
+logs/development/
+logs/production/express/*
+logs/production/server/*
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,7 +9,8 @@ yarn-error.log*
 lerna-debug.log*
 
 # exception to the logs rule
-!logs/.gitkeep 
+!logs/production/server/.gitkeep 
+!logs/production/express/.gitkeep 
 
 # Data
 .data/files/*
