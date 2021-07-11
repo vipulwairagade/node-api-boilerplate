@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "SET NODE_ENV=production && babel-node -r module-alias/register ./bin/www | rotate-logs --config=%INIT_CWD%/configs/server-log.config.js | rotate-logs --config=%INIT_CWD%/configs/request-log.config.js",
-    "dev": "SET NODE_ENV=development && nodemon --exec babel-node -r module-alias/register ./bin/www | rotate-logs --config=./configs/server-log.config.js | rotate-logs --config=./configs/request-log.config.js",
+    "start": "cross-env-shell NODE_ENV=production babel-node -r module-alias/register ./bin/www | cross-env-shell NODE_ENV=production rotate-logs --config=$INIT_CWD/configs/app-log.config.js | cross-env-shell NODE_ENV=production rotate-logs --config=$INIT_CWD/configs/http-request-log.config.js",
+    "dev": "cross-env-shell NODE_ENV=development nodemon --exec babel-node -r module-alias/register ./bin/www | cross-env-shell NODE_ENV=development rotate-logs --config=$INIT_CWD/configs/app-log.config.js | cross-env-shell NODE_ENV=development rotate-logs --config=$INIT_CWD/configs/http-request-log.config.js",
     "lint": "eslint . --ext .js",
     "lint:fix": "npm run lint -- --fix",
-    "db": "db-migrate --config '%INIT_CWD%\\db\\dbmrc.json' -m '%INIT_CWD%\\db\\migrations'",
+    "db": "db-migrate --config '$INIT_CWD\\db\\dbmrc.json' -m '$INIT_CWD\\db\\migrations'",
     "db:create": "npm run db db:create",
     "db:drop": "npm run db db:drop",
     "migrate:up": "npm run db up:migrate",
@@ -61,6 +61,7 @@
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "nodemon": "^2.0.4",
+    "pino-pretty": "^5.1.1",
     "prettier": "^2.2.1"
   },
   "_moduleAliases": {

@@ -2,6 +2,7 @@
 const mysql = require("mysql");
 const util = require("util");
 import { envConfig } from "../configs";
+import { logger } from "@helpers";
 
 const pool = mysql.createPool({
   host: envConfig.DB_HOST,
@@ -22,10 +23,10 @@ pool.getConnection((err, connection) => {
       console.error("Database has too many connections.");
     }
     if (err.code === "ECONNREFUSED") {
-      console.error("Database connection was refused.");
+      logger.error("Database connection was refused.");
     }
   }
-  console.log("Successfully connected to Database !!");
+  logger.info("Successfully connected to Database !!");
 
   if (connection) {
     connection.release();

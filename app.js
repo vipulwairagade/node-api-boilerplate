@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const helmet = require("helmet");
 
-import { expressLogger, serverLogger } from "@helpers";
+import { logger, expressLogger } from "@helpers";
 import { errorMiddleware } from "@middlewares";
 import { jsend } from "@utils";
 
@@ -31,14 +31,14 @@ app.get("/favicon.ico", (req, res) => res.status(204).end());
 app.use("/api", require("./api"));
 
 app.use((err, req, res, next) => {
-  serverLogger.error(err);
+  logger.error(err);
   errorMiddleware(err, req, res, next);
 });
 
 // log uncaught exception
 process.on("uncaughtException", err => {
-  serverLogger.error("Uncaught exception.");
-  serverLogger.fatal({ err });
+  logger.error("Uncaught exception.");
+  logger.fatal({ err });
   process.exit(1);
 });
 

@@ -1,6 +1,6 @@
 const env = require("dotenv");
 env.config({ path: process.env.NODE_ENV === "production" ? ".env" : ".env.local" });
-const dest = process.env.NODE_ENV === "development" ? "development" : "production";
+const dest = process.env.NODE_ENV === "production" ? "production" : "development";
 
 module.exports = {
   filter(data) {
@@ -11,11 +11,12 @@ module.exports = {
     return !data.req;
   },
   output: {
-    path: "server.log", // name of file
+    path: "app.log", // name of file
     options: {
-      path: `./logs/${dest}/server`, // path to write files to
+      path: `./logs/${dest}/app`, // path to write files to
       size: "2M", // max file size
-      interval: "1d" // rotate daily
+      interval: "1d", // rotate daily
+      teeToStdout: process.env.NODE_ENV !== "production" // writes file content to stdout as well.
     }
   }
 };

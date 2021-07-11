@@ -1,6 +1,6 @@
 const DBMigrate = require("db-migrate");
 const path = require("path");
-import { serverLogger } from "@helpers";
+import { logger } from "@helpers";
 import { envConfig } from "@configs";
 
 const dbmOpts = {
@@ -33,7 +33,7 @@ export const migrate = async () => {
   // getting an instance of dbmigrate
   const dbmigrate = await DBMigrate.getInstance(true, dbmOpts);
   await dbmigrate.up();
-  serverLogger.debug("Database migrated");
+  logger.debug("Database migrated");
 };
 
 migrate();

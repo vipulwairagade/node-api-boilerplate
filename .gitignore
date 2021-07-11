@@ -123,8 +123,8 @@ dist
 .vscode-test
 
 #Lock Files
-*.lock
-*-lock.json
+# *.lock
+# *-lock.json
 
 #VSCode Files
 .vscode/
