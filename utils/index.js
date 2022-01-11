@@ -5,3 +5,4 @@ export * from "./token";
 export * from "./escapeRegExp";
 export * from "./password";
 export * from "./sendMail";
+export * from "./migrate";

@@ -1,12 +1,12 @@
 import { UserApiError } from "./error";
-import { mysqlConnection, serverLogger } from "../../../../../helpers";
+import { mysqlConnection, logger } from "../../../../../helpers";
 
 export const controller = {
   test: (req, res, next) => {
     try {
       throw new UserApiError("This is demo error", 400);
     } catch (error) {
-      serverLogger.error(error);
+      logger.error(error);
       next(error);
     }
   },

@@ -7,7 +7,8 @@
     "max-len": ["error", 500, { "ignoreUrls": true }],
     "camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }],
     "no-useless-catch": "off",
-    "no-unused-vars": ["error", { "ignoreRestSiblings": true }]
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "quote-props": ["error", "as-needed"]
   },
 
   // Rules limited to specific locations
