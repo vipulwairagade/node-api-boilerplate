@@ -1,9 +1,8 @@
 import HandleBars from "handlebars";
 
-export const getEmailTemplate = async ({body, subject}, {bodyVariables, subjectVariables }) => {
-
-	const bodyTemplate = HandleBars.compile(mail.body);
-	const subjectTemplate = HandleBars.compile(mail.subject);
+export const getEmailTemplate = ({ body, subject }, { bodyVariables, subjectVariables }) => {
+	const bodyTemplate = HandleBars.compile(body);
+	const subjectTemplate = HandleBars.compile(subject);
 
 	const emailBody = bodyTemplate(bodyVariables);
 	const emailSubject = subjectTemplate(subjectVariables);

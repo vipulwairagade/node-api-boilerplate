@@ -31,7 +31,6 @@ export const verifyAndFormatNumber = (number, region = "US") => {
 	return formatNumber(phoneNumber);
 };
 
-
 export const formatNumberWithoutPlus = number => {
 	const phoneNumber = phoneUtil.parse(number);
 	const countryCode = phoneNumber.getCountryCode();

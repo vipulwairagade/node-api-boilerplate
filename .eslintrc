@@ -9,9 +9,7 @@
 			{
 				"properties": "never",
 				"ignoreDestructuring": true,
-				"allow": [
-					
-				]
+				"allow": []
 			}
 		]
 	},

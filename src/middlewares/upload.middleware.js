@@ -3,12 +3,12 @@ import multer from "multer";
 
 const storage = multer.diskStorage({
 	destination(req, file, callback) {
-			switch (file.fieldname) {
-				default: {
-					callback(null, join(".data", "files"));
-					break;
-				}
+		switch (file.fieldname) {
+			default: {
+				callback(null, join(".data", "files"));
+				break;
 			}
+		}
 	},
 	filename(req, file, callback) {
 		callback(null, `${file.fieldname}-${Date.now()}${extname(file.originalname)}`);

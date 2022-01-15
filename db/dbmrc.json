@@ -1,21 +1,21 @@
 {
-  "development": {
-    "driver": "mysql8",
-    "multipleStatements": true,
-    "host": "localhost",
-    "port": "3306",
-    "database": "demo",
-    "user": "vipul",
-    "password": "vipul123"
-  },
-  "production": {
-    "driver": "mysql8",
-    "multipleStatements": true,
-    "host": "localhost",
-    "port": "3306",
-    "database": "demo",
-    "user": "vipul",
-    "password": "vipul123"
-  },
-  "sql-file": true
+	"development": {
+		"driver": "mysql8",
+		"multipleStatements": true,
+		"host": "localhost",
+		"port": "3306",
+		"database": "demo",
+		"user": "vipul",
+		"password": "vipul123"
+	},
+	"production": {
+		"driver": "mysql8",
+		"multipleStatements": true,
+		"host": "localhost",
+		"port": "3306",
+		"database": "demo",
+		"user": "vipul",
+		"password": "vipul123"
+	},
+	"sql-file": true
 }
