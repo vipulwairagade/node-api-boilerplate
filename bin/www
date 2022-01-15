@@ -1,12 +1,12 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 
 /**
  * Module dependencies.
  */
 
-const app = require("../app");
+const { app, server } = require("../app");
 const debug = require("debug")("node-backend:server");
-const http = require("http");
 
 /**
  * Get port from environment and store in Express.
@@ -14,12 +14,6 @@ const http = require("http");
 
 const port = normalizePort(process.env.CONFIG_APP_PORT || "3000");
 app.set("port", port);
-
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -34,16 +28,16 @@ server.on("listening", onListening);
  */
 
 function normalizePort(val) {
-  const port = parseInt(val, 10);
+  const specifiedPort = parseInt(val);
 
-  if (isNaN(port)) {
+  if (isNaN(specifiedPort)) {
     // named pipe
     return val;
   }
 
-  if (port >= 0) {
+  if (specifiedPort >= 0) {
     // port number
-    return port;
+    return specifiedPort;
   }
 
   return false;
