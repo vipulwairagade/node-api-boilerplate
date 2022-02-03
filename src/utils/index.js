@@ -1,5 +1,7 @@
 export * from "./paginate";
 export * from "./response";
+export * from "./catchAsync";
+export * from "./pick";
 export * from "./bcrypt";
 export * from "./token";
 export * from "./escapeRegExp";
