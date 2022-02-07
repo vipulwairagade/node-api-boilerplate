@@ -1,4 +1,4 @@
-import { catchAsync } from "../../../../utils";
+import { catchAsync } from "#utils/index";
 import { userService } from "./user";
 
 export const controller = {

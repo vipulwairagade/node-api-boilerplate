@@ -1,5 +1,5 @@
 const CryptoJS = require("crypto-js");
-import { envConfig } from "../configs";
+import { envConfig } from "#configs/index";
 
 export const encryptObjectData = data => {
 	const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), envConfig.CRYPTO_SECRET_KEY).toString();

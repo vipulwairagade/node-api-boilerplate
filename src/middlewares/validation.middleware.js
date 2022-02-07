@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { StatusCodes } from "http-status-codes";
-import { pick } from "../utils";
+import { pick } from "#utils/index";
 
 class ValidationMiddlewareError extends Error {
 	constructor(message, httpStatus) {

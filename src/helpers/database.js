@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 const mysql = require("mysql2");
 const util = require("util");
-import { envConfig } from "../configs";
-import { logger } from "@helpers";
+import { envConfig } from "#configs/index";
+import { logger } from "#helpers/index";
 
 const pool = mysql.createPool({
 	host: envConfig.DB_HOST,

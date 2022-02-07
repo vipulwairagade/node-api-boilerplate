@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-import { envConfig, tokenConfig } from "../configs";
+import { envConfig, tokenConfig } from "#configs/index";
 
 export const generateToken = tokenData => {
 	const token = jwt.sign({ data: tokenData }, envConfig.JWT_SECRET_KEY, { expiresIn: tokenConfig.TOKEN_LIFE });

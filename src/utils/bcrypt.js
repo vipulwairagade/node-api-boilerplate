@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-import { appConfig } from "../configs";
+import { appConfig } from "#configs/index";
 
 export const generateHash = plainTextPassword => {
 	const salt = bcrypt.genSaltSync(appConfig.SALT_ROUNDS);

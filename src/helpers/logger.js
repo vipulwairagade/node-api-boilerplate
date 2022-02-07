@@ -1,5 +1,5 @@
-import { envConfig } from "../configs";
-import { LOG_LEVELS, ENVIRONMENTS } from "../constants";
+import { envConfig } from "#configs/index";
+import { LOG_LEVELS, ENVIRONMENTS } from "#constants/index";
 const pino = require("pino");
 const pinoExpress = require("express-pino-logger");
 

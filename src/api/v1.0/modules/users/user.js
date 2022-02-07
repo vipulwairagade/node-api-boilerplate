@@ -1,4 +1,4 @@
-import { mysqlConnection } from "../../../../helpers";
+import { mysqlConnection } from "#helpers/index";
 class UserService {
 	async test() {
 		const data = await Promise.resolve("Working !");

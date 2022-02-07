@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import { verifyToken } from "../utils";
+import { verifyToken } from "#utils/index";
 class AuthenticationMiddlewareError extends Error {
 	constructor(message, httpStatus) {
 		super(message);

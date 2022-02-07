@@ -1,7 +1,7 @@
 const DBMigrate = require("db-migrate");
 const path = require("path");
-import { logger } from "@helpers";
-import { envConfig } from "@configs";
+import { logger } from "#helpers/index";
+import { envConfig } from "#configs/index";
 
 const dbmOpts = {
 	config: {

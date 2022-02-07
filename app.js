@@ -7,9 +7,9 @@ const helmet = require("helmet");
 // const swaggerUi = require("swagger-ui-express");
 // const swaggerDocument = require("./swagger.json");
 
-import { logger, expressLogger } from "@helpers";
-import { errorMiddleware } from "@middlewares";
-import { jsend } from "@utils";
+import { logger, expressLogger } from "#helpers/index";
+import { errorMiddleware } from "#middlewares/index";
+import { jsend } from "#utils/index";
 
 const corsOptions = {
 	origin: "*",
@@ -31,7 +31,6 @@ app.use(expressLogger);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, ".data")));
 app.use(express.static(path.join(__dirname, "logs")));
-app.get("/favicon.ico", (req, res) => res.status(204).end());
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/api", require("./src/api"));
