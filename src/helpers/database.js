@@ -13,7 +13,8 @@ const pool = mysql.createPool({
 	connectionLimit: 100,
 	multipleStatements: true
 });
-const getConnection = () => {
+
+export const getConnection = () => {
 	return new Promise((resolve, reject) => {
 		pool.getConnection((err, connection) => {
 			if (err) {
@@ -69,5 +70,3 @@ export const mysqlTransaction = async (queries, queryValues) => {
 		throw err;
 	}
 };
-
-getConnection();

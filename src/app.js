@@ -1,15 +1,15 @@
 import express from "express";
-const http = require("http");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const helmet = require("helmet");
+import path from "path";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import helmet from "helmet";
 // const swaggerUi = require("swagger-ui-express");
 // const swaggerDocument = require("./swagger.json");
 
-import { logger, expressLogger } from "#helpers/index";
+import { expressLogger } from "#helpers/index";
 import { errorMiddleware } from "#middlewares/index";
 import { jsend } from "#utils/index";
+import apiRoutes from "./api";
 
 const corsOptions = {
 	origin: "*",
@@ -19,7 +19,6 @@ const corsOptions = {
 };
 
 const app = express();
-const server = http.createServer(app);
 
 app.use(helmet());
 app.use(cors(corsOptions));
@@ -33,18 +32,14 @@ app.use(express.static(path.join(__dirname, ".data")));
 app.use(express.static(path.join(__dirname, "logs")));
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use("/api", require("./src/api"));
+app.get("/favicon.ico", (req, res) => res.status(204).end());
+app.use("/api", apiRoutes);
+app.use("/", (req, res) => {
+	res.redirect("/api/health");
+});
 
 app.use((err, req, res, next) => {
-	logger.error(err);
 	errorMiddleware(err, req, res, next);
 });
 
-// log uncaught exception
-process.on("uncaughtException", err => {
-	logger.error("Uncaught exception.");
-	logger.fatal({ err });
-	process.exit(1);
-});
-
-module.exports = { app, server };
+export { app };

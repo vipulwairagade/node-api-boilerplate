@@ -36,4 +36,4 @@ export const migrate = async () => {
 	logger.debug("Database migrated");
 };
 
-migrate();
+// migrate();
