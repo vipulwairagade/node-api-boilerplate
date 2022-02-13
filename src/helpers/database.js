@@ -1,8 +1,11 @@
 /* eslint-disable no-console */
 const mysql = require("mysql2");
 const util = require("util");
+import httpError from "http-errors";
+import { StatusCodes } from "http-status-codes";
 import { envConfig } from "#configs/index";
 import { logger } from "#helpers/index";
+import { ERROR_CODES } from "#constants/index";
 
 const pool = mysql.createPool({
 	host: envConfig.DB_HOST,
@@ -48,7 +51,7 @@ export const mysqlQuery = util.promisify(pool.query).bind(pool);
 
 export const mysqlTransaction = async (queries, queryValues) => {
 	if (queries.length !== queryValues.length) {
-		throw new Error("Number of provided queries did not match the number of provided query values arrays");
+		throw httpError(StatusCodes.BAD_REQUEST, "Number of provided queries did not match the number of provided query values arrays", ERROR_CODES.INVALID);
 	}
 	const connection = await getConnection();
 

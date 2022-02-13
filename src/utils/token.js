@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 import { envConfig, tokenConfig } from "#configs/index";
+import { ERROR_CODES } from "#constants/index";
 
 export const generateToken = tokenData => {
 	const token = jwt.sign({ data: tokenData }, envConfig.JWT_SECRET_KEY, { expiresIn: tokenConfig.TOKEN_LIFE });
@@ -21,6 +22,7 @@ export const verifyToken = token => {
 		if (err.name === "TokenExpiredError") {
 			err.message = "User Session Expired";
 			err.status = 401;
+			err.errorCode = ERROR_CODES.UNAUTHENTICATED;
 			throw err;
 		}
 		throw err;
@@ -42,7 +44,9 @@ export const verifyRefreshToken = token => {
 		return decodedData;
 	} catch (err) {
 		if (err.name === "TokenExpiredError") {
+			err.message = "Refresh Token Expired";
 			err.status = 403;
+			err.errorCode = ERROR_CODES.UNAUTHORIZED;
 			throw err;
 		}
 		throw err;

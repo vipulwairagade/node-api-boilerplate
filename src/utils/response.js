@@ -8,18 +8,19 @@ export const jsend = () => {
 					data
 				});
 			},
-			fail: (message, data, statusCode = 400) => {
+			fail: (message, data, errorCode = null, statusCode = 400) => {
 				res.status(statusCode).send({
 					status: "fail",
 					message,
+					errorCode,
 					data
 				});
 			},
-			error: (message, statusCode = 500, code = null, data = null) => {
+			error: (message, statusCode = 500, errorCode = null, data = null) => {
 				res.status(statusCode).send({
 					status: "error",
 					message,
-					code,
+					errorCode,
 					data
 				});
 			}
