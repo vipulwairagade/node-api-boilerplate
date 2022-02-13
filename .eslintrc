@@ -1,16 +1,19 @@
 {
-  "root": true,
-  "extends": "eslint-config-vipul-base",
-  "rules": {
-    // Overrides
-    "func-style": "off",
-    "max-len": ["error", 500, { "ignoreUrls": true }],
-    "camelcase": ["error", { "properties": "never", "ignoreDestructuring": true }],
-    "no-useless-catch": "off",
-    "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
-    "quote-props": ["error", "as-needed"]
-  },
+	"root": true,
+	"extends": "eslint-config-vipul-base",
+	"rules": {
+		// Overrides
+		"no-tabs": "off",
+		"camelcase": [
+			"error",
+			{
+				"properties": "never",
+				"ignoreDestructuring": true,
+				"allow": []
+			}
+		]
+	},
 
-  // Rules limited to specific locations
-  "overrides": []
+	// Rules limited to specific locations
+	"overrides": []
 }

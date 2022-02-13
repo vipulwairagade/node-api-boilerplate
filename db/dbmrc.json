@@ -1,22 +1,21 @@
 {
-    "development": {
-      "driver": "mysql",
-      "multipleStatements": true,
-      "host": "localhost",
-      "port": "3306",
-      "database": "demo",
-      "user": "vipul",
-      "password": "vipul123"
-    },
-    "production": {
-      "driver": "mysql",
-      "multipleStatements": true,
-      "host": {"ENV": "CONFIG_DB_SERVER"},
-      "port": {"ENV": "CONFIG_DB_PORT"},
-      "database": {"ENV": "CONFIG_DB_NAME"},
-      "user": {"ENV": "CONFIG_DB_USERNAME"},
-      "password": {"ENV": "CONFIG_DB_PASSWORD"}
-    },
-    "sql-file": true
+	"development": {
+		"driver": "mysql8",
+		"multipleStatements": true,
+		"host": "localhost",
+		"port": "3306",
+		"database": "demo",
+		"user": "vipul",
+		"password": "vipul123"
+	},
+	"production": {
+		"driver": "mysql8",
+		"multipleStatements": true,
+		"host": "localhost",
+		"port": "3306",
+		"database": "demo",
+		"user": "vipul",
+		"password": "vipul123"
+	},
+	"sql-file": true
 }
-

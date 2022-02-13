@@ -1,0 +1,3 @@
+# Convert text file line endings to crlf
+* text eol=crlf
+*.js text

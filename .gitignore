@@ -9,8 +9,8 @@ yarn-error.log*
 lerna-debug.log*
 
 # exception to the logs rule
-!logs/production/server/.gitkeep 
-!logs/production/express/.gitkeep 
+!logs/production/server/.gitkeep
+!logs/production/express/.gitkeep
 
 # Data
 .data/files/*
@@ -19,7 +19,10 @@ lerna-debug.log*
 !.data/files/.gitkeep
 
 # exception to the migration folder
-!db/migrations/.gitkeep 
+!db/migrations/.gitkeep
+
+# Ignore db migration config
+db/dbmrc.json
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -127,4 +130,4 @@ dist
 # *-lock.json
 
 #VSCode Files
-.vscode/
+.vscode/settings.json
