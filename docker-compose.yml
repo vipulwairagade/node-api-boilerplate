@@ -1,0 +1,95 @@
+version: "3.7"
+
+networks:
+  default_network:
+    driver: bridge
+
+services:
+  api:
+    build: .
+    command: npm run dev
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    container_name: mysql
+    volumes:
+      - ./.data/docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_ROOT_PASSWORD: vipul123
+    ports:
+      - 3306:3306
+    networks:
+      - default_network
+
+  # localtunnel:
+  #   image: efrecon/localtunnel
+  #   restart: on-failure
+  #   volumes:
+  #     - ./subdomain.js:/app/subdomain.js
+  #   entrypoint: sh -c '/usr/bin/lt --local-host api --port 3000 --subdomain `/app/subdomain.js`'
+  #   env_file:
+  #     - .env.local
+  #   links:
+  #     - api
+  #   depends_on:
+  #     - api
+
+  redis:
+    image: redis:5.0 #to be changed by vipul sir
+    container_name: redis #to be changed by vipul sir
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    restart: always
+    container_name: kafka
+    ports:
+      - "9091:9091"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:19091,PLAINTEXT_HOST://localhost:9091
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_BROKER_ID: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ./.data/docker/kafka/data:/var/lib/kafka/data
+    networks:
+      - default_network
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.2.1
+    restart: always
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: "2181"
+    ports:
+      - "2181:2181"
+    volumes:
+      - ./.data/docker/zookeeper/data:/var/lib/zookeeper/data
+      - ./.data/docker/zookeeper/datalog:/var/lib/zookeeper/datalog
+    networks:
+      - default_network
+
+  kowl:
+    image: quay.io/cloudhut/kowl:master
+    container_name: kowl
+    restart: "no"
+    depends_on:
+      - kafka
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_BROKERS: "kafka:19091"
+      KAFKA_TLS_ENABLED: "false"
+    networks:
+      - default_network

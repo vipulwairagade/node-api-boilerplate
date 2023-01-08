@@ -1,0 +1,19 @@
+{
+	"root": true,
+	"extends": "eslint-config-vipul-base",
+	"rules": {
+		// Overrides
+		"no-tabs": "off",
+		"camelcase": [
+			"error",
+			{
+				"properties": "never",
+				"ignoreDestructuring": true,
+				"allow": []
+			}
+		]
+	},
+
+	// Rules limited to specific locations
+	"overrides": []
+}
